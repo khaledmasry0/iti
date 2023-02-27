@@ -43,9 +43,9 @@ ng g class folderName/className     to generate a class
 
 ### data bind
 
-    ```javascript
-      <h1>{{value}}</h1>               // to set dynamic property
-    ```
+```javascript
+<h1>{{ value }}</h1> // to set dynamic property
+```
 
 ### property bind
 
