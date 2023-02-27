@@ -39,16 +39,23 @@ ng g class folderName/className     to generate a class
 
 ### `main.ts => app module => app component`
 
+## - Info
+
+#### - `if any changes happens to {[(angular.json)]} we should reRun the application `
+
 <hr/>
 
 ### data bind
 
 ```javascript
-<h1>{{ value }}</h1> // to set dynamic property
+<h1>{{ value }}</h1> // to set dynamic Value
 ```
 
 ### property bind
 
 ```javascript
-<input type="text" [value] = "obj.name"/>     // to set dynamic property
+<input type="text" [value] = "obj.name"/>           // to set dynamic Dom property
+  =
+<input type="text" [attr.value] = "obj.name"/>     // to set dynamic html property
+// there are some differences between dom and html properties but in most cases they are the same
 ```
