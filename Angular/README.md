@@ -5,10 +5,11 @@
 ### commands
 
 ```node
-npm i -g @angular/cli     to install angular
-ng new App_name           to create a new angular app
-ng serve -o               to run the application
-ng g c component_name     to generate a component
+npm i -g @angular/cli               to install angular
+ng new App_name                     to create a new angular app
+ng serve -o                         to run the application
+ng g c component_name               to generate a component
+ng g class folderName/className     to generate a class
 ```
 
 ### folders & files
@@ -37,3 +38,17 @@ ng g c component_name     to generate a component
 ### starting
 
 ### `main.ts => app module => app component`
+
+<hr/>
+
+### data bind
+
+    ```javascript
+      <h1>{{value}}</h1>               // to set dynamic property
+    ```
+
+### property bind
+
+    ```javascript
+      <input type="text" [value] = "obj.name"/>     // to set dynamic property
+    ```
