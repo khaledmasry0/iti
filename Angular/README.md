@@ -49,6 +49,6 @@ ng g class folderName/className     to generate a class
 
 ### property bind
 
-    ```javascript
-      <input type="text" [value] = "obj.name"/>     // to set dynamic property
-    ```
+```javascript
+    <input type="text" [value] = "obj.name"/>     // to set dynamic property
+```
