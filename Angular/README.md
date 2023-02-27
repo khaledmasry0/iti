@@ -26,24 +26,23 @@ ng g class folderName/className     to generate a class
 
   #### `expession embadded in template and be evaluated bind between template and component class`
 
-  #### 1 - One way data binding
-
-  recieve data from component to template or reverse
-
-      - string interpolation ex: <h1>{{value}}</h1>   =>  component to template
-      - event binding ex: click    => template to component
-
-  #### 2 - Two way data binding
-
-### starting
+### - starting
 
 ### `main.ts => app module => app component`
 
-## - Info
+## - Random Info
 
-- if any changes happens to `angular.json` we should reRun the application 
+- if any changes happens to `angular.json` we should reRun the application
+- event `keyup.enter` = on press Enter
 
-<hr/>
+  <hr/>
+
+  ### 1 - One way data binding
+
+  recieve data from component to template or reverse
+
+        - string interpolation ex: <h1>{{value}}</h1>   =>  component to template
+        - event binding ex: click    => template to component
 
 ### data bind
 
@@ -58,4 +57,71 @@ ng g class folderName/className     to generate a class
   =
 <input type="text" [attr.value] = "obj.name"/>     // to set dynamic html property
 // there are some differences between dom and html properties but in most cases they are the same
+```
+
+### event bind
+
+```javascript
+show(e){
+  console.log(e.target.value)
+}
+//using circular brackets to bind events & without (on)
+<button (click) ="show($event)">save</button>
+```
+
+### Reference variable
+
+```javascript
+//  = useRef() in React
+```
+
+```javascript
+<input #rf type="text"/>
+<button (click) ="showInput(rf)">save</button>           // onclick ==> show that input holds the rf
+```
+
+<hr/>
+
+### 2 - Two way data binding
+
+### ngModel
+
+```javascript
+productname =""      // in component
+
+<input type="text" [(ngModel)] ="productname"/>
+
+  & in `app.module.ts`
+  import {FormsModule} from @angular/forms ;
+  // in imports
+  push FormsModule
+```
+
+### =
+
+```javascript
+productname =""      // in component
+
+changeproduct(value){      // in component
+  this.prodcutname = value
+}
+<input type="text" #qw [value] ="productname"
+(keyup)= "changeproduct(qw.value)"/>
+
+```
+
+<hr/>
+
+## Arrays
+
+### \*ngFor
+
+```javascript
+// in component
+ages = [10, 20, 30];
+
+//in template
+<div *ngFor ="let item of ages">
+  age = {{item}}
+</div>
 ```
