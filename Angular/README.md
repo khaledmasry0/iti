@@ -41,7 +41,7 @@ ng g class folderName/className     to generate a class
 
 recieve data from component to template or reverse
 
-- string interpolation ex: <h1>{{value}}</h1> => component to template
+- string interpolation ex: `<h1>{{value}}</h1>` => component to template
 - event binding ex: click => template to component
 
 ### data bind
