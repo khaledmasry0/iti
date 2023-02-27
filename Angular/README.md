@@ -35,14 +35,14 @@ ng g class folderName/className     to generate a class
 - if any changes happens to `angular.json` we should reRun the application
 - event `keyup.enter` = on press Enter
 
-  <hr/>
+<hr/>
 
-  ### 1 - One way data binding
+### 1 - One way data binding
 
-  recieve data from component to template or reverse
+recieve data from component to template or reverse
 
-        - string interpolation ex: <h1>{{value}}</h1>   =>  component to template
-        - event binding ex: click    => template to component
+- string interpolation ex: <h1>{{value}}</h1> => component to template
+- event binding ex: click => template to component
 
 ### data bind
 
