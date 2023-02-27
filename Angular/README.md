@@ -41,7 +41,7 @@ ng g class folderName/className     to generate a class
 
 ## - Info
 
-#### - `if any changes happens to {[(angular.json)]} we should reRun the application `
+- if any changes happens to `angular.json` we should reRun the application 
 
 <hr/>
 
