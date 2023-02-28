@@ -10,6 +10,7 @@ ng new App_name                     to create a new angular app
 ng serve -o                         to run the application
 ng g c component_name               to generate a component
 ng g class folderName/className     to generate a class
+ng g d directive_name               to generate a component
 ```
 
 ### folders & files
@@ -114,14 +115,65 @@ changeproduct(value){      // in component
 
 ## Arrays
 
-### \*ngFor
+### \*ngFor structure directive
 
 ```javascript
 // in component
 ages = [10, 20, 30];
 
 //in template
-<div *ngFor ="let item of ages">
+<div *ngFor ="let item of ages;let i=index;let o=odd;let e=even; let f=first; let l =last"
+
+// classes
+[class.bg-success] = "condition"
+[class.bg-success] = "o"   // odd items will take the class of success
+[class.bg-danger] = "e"   // even items will take the class of dan  ger
+  =
+[ngClass] = "{'className': condition, 'bg-success': o, 'bg-danger': array.length > 5}"
+//if that condition is true this item will take that class
+// true => o(odd) || e(even) || ...etc
+
+[class]="'bg-success'"          // all items will take this class
+
+
+//Styles
+[ngStyle]= "{'className': condition, 'bg-success': o, 'bg-danger': array.length > 5}"
+>
   age = {{item}}
 </div>
+```
+
+"----------------------------------------------------------------------------------"
+
+### \*ngIf structure directive
+
+`control if the element will be exist in the dom or not`
+
+```javascript
+// in component
+ages = [10, 20, 30];
+
+//in template
+//if true this div will be exist in Dom
+<div *ngIf ="ages.lenth > 5"
+[ngClass] = "{'className': condition, 'bg-danger': ages.length < 5}"
+>
+</div>
+```
+
+### [ngSwitch]
+
+`control if the element will be exist in the dom or not`
+
+```javascript
+// in component
+x = 2
+
+//in template
+<div [ngSwitch]= "x">
+  <span *ngSwitchCase= "1">1 is selected</span>
+  <span *ngSwitchCase= "2">2 is selected</span>
+  <span *ngSwitchCase= "3">3 is selected</span>
+</div>
+// so span of 2 is which be exist
 ```
