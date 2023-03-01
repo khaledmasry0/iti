@@ -10,7 +10,9 @@ ng new App_name                     to create a new angular app
 ng serve -o                         to run the application
 ng g c component_name               to generate a component
 ng g class folderName/className     to generate a class
-ng g d directive_name               to generate a component
+ng g d directive_name               to generate a directive
+ng g p pipe_name                    to generate a pipe
+ng g s service_name                 to generate a service
 ```
 
 ### folders & files
@@ -113,8 +115,6 @@ changeproduct(value){      // in component
 
 <hr/>
 
-## Arrays
-
 ### \*ngFor structure directive
 
 ```javascript
@@ -143,7 +143,7 @@ ages = [10, 20, 30];
 </div>
 ```
 
-"----------------------------------------------------------------------------------"
+"--------------------------------------------------------------------------------------------------"
 
 ### \*ngIf structure directive
 
@@ -176,4 +176,63 @@ x = 2
   <span *ngSwitchCase= "3">3 is selected</span>
 </div>
 // so span of 2 is which be exist
+```
+
+"--------------------------------------------------------------------------------------------------"
+
+### make your own directive
+
+```typescript
+// ng g d directive_name => it'll make a class in directive_name.directive.ts
+
+import { Directive, ElementRef, Input } from "@angular/core";
+
+//inside the class
+export class directive_name implements onInit {
+  @Input() dcolor: string = "purlpe";
+  constructor(public el: ElementRef) {}
+  ngOnInit(): void {
+    this.el.nativeElement.style.backgroundColor = this.dcolor;
+  }
+}
+
+//inside the template
+<div directive_name dcolor="red">
+  {" "}
+  // & if i don't use d color it will be purlpe by default
+</div>;
+```
+
+<hr/>
+
+### Pipe
+
+#### `it's a format for: String || Number || Date`
+
+```typescript
+{{ValueName | currency : currencyCode : display : digitInfo : locale}}
+{{ValueName | date : format : timezone : locale  }}
+
+//Example
+salary = 5000.4568          // in component
+title = "KHALED"
+ndate = new Date(1997 , 4 , 12)
+
+<p>
+  salary {{salary | currency : 'CAD' : 'symbol-narrow' : '4.3-3'}}  // $5,000.456
+
+  {{title | lowercase}}        // khaled       // without any changes on the original value
+
+  {{ndate | date}}          // May, 12 , 1997
+  {{ndate | date : 'dd / MM / yyyyy'}}          // 12 / 05 / 1997
+  {{ndate | date : 'dd / MMM / yyyyy'}}          // 12 / May / 1997
+  {{ndate | date : 'MMM'}}          // May
+  {{ndate | date : 'short'}}          // 5 / 12 / 97, 12:00 AM
+</p>
+```
+
+```javascript
+// in the pipe file
+// pipe is watching the changes on reference by default
+// to make it watch the values  => pure = false
 ```
