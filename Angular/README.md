@@ -8,7 +8,7 @@
 npm i -g @angular/cli               to install angular
 ng new App_name                     to create a new angular app
 ng serve -o                         to run the application
-ng g c component_name               to generate a component
+ng g c component_name               to generate a component    // --skipTests
 ng g class folderName/className     to generate a class
 ng g d directive_name               to generate a directive
 ng g p pipe_name                    to generate a pipe
@@ -235,4 +235,80 @@ ndate = new Date(1997 , 4 , 12)
 // in the pipe file
 // pipe is watching the changes on reference by default
 // to make it watch the values  => pure = false
+```
+
+<hr/>
+
+## Routing
+
+```typescript
+// inside app-routing.module.ts
+// suppose we have Home, Contact and About components
+
+const routes: Routes = [
+  { path: "home", component: HomeComponent } //if path is starts with home => load HomeComponent
+  { path: "contact", component: ContactComponent }
+  { path: "about", component: AboutComponent }
+  { path: "", redirectTo:"home", pathMatch:"full" } // has nothing => load HomeComponent & make path has /home
+  { path: "**", component: NotfoundComponent }    // if path is has anything =>  load NotfoundComponent
+  // path: "**" must be the last one in the array , because it is just a searhing loop
+];
+```
+
+```typescript
+// inside app-component.html
+<router-outlet></router-outlet> // and that's it
+```
+
+### Navigation
+
+```javascript
+
+<a routerLink = "/home">home</a>       // adding the attr routerLink to navigate
+<a routerLink = "/about">About</a>
+<a [routerLink] = "['/contact']">Contact</a>   // or
+
+<li routerLinkActive="active"><a routerLink = "/home">home</a></li>   // in that path =>this li will have active class
+
+```
+
+<hr/>
+
+## Reactive extension for js ==> rxjs
+
+```typescript
+// in componentName.serrvice.ts
+import { Observable } from 'rxjs';
+
+myfun(){
+  return new Observable<number>(a => {
+    setTimeout(()=>{
+      a.next(10);                  // after 1 second send data to subscribe = 10
+    },1000)
+
+    setTimeout(()=>{
+      a.next(30);                  // after 5 second send data to subscribe = 30
+    },5000)
+
+    setTimeout(()=>{
+      a.complete();
+    },6000)
+
+    setTimeout(()=>{
+      a.error("error");
+    },9000)
+
+})
+```
+
+```typescript
+// in componentName.component.ts
+constructor(public hs:serviceClass)
+
+show(){
+  this.hs.myfun().subscribe(data => {console.log(data)},                 //10................30
+  err => {console.log(err)},
+  () => {console.log("complete")}             // excute after complete
+  )
+}
 ```
