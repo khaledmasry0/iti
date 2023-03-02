@@ -249,9 +249,17 @@ const routes: Routes = [
   { path: "home", component: HomeComponent } //if path is starts with home => load HomeComponent
   { path: "contact", component: ContactComponent }
   { path: "about", component: AboutComponent }
+
+  { path: "about", component: AboutComponent,children: [
+  { path: "detais1", component: AboutDetail1sComponent },
+  { path: "detais2", component: AboutDetail2sComponent }
+  ]}
+
   { path: "", redirectTo:"home", pathMatch:"full" } // has nothing => load HomeComponent & make path has /home
   { path: "**", component: NotfoundComponent }    // if path is has anything =>  load NotfoundComponent
   // path: "**" must be the last one in the array , because it is just a searhing loop
+
+  { path: "department/details/:id", component: DepartmentDetails }                  // dynamic
 ];
 ```
 
@@ -267,9 +275,20 @@ const routes: Routes = [
 <a routerLink = "/home">home</a>       // adding the attr routerLink to navigate
 <a routerLink = "/about">About</a>
 <a [routerLink] = "['/contact']">Contact</a>   // or
+<a [routerLink] = "['/department/details',item.id]">item</a>   // ====> = `/department/details${item.id}`
 
 <li routerLinkActive="active"><a routerLink = "/home">home</a></li>   // in that path =>this li will have active class
 
+
+// to navigate
+// in constructor (router:Router)
+this.router.navigateByUrl("/home")           // go to home component
+
+
+// to get the id param from current Url
+// in constructor (ac:ActivatedRoute)
+// in ngOnInit
+this.ac.params.subscribe(a=>{this.variableName = a})
 ```
 
 <hr/>
