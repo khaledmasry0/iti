@@ -13,6 +13,7 @@ ng g class folderName/className     to generate a class
 ng g d directive_name               to generate a directive
 ng g p pipe_name                    to generate a pipe
 ng g s service_name                 to generate a service
+ng g g service_name                 to generate a guard
 ```
 
 ### folders & files
@@ -24,6 +25,8 @@ ng g s service_name                 to generate a service
 - style.js => control the styles
 - polyfills.js => close the gap between browsers
 - runtime.js => from where calling starts
+
+- #### primeNG : UI library
 
 - #### Data Binding:
 
@@ -250,6 +253,7 @@ const routes: Routes = [
   { path: "contact", component: ContactComponent }
   { path: "about", component: AboutComponent }
 
+  //children
   { path: "about", component: AboutComponent,children: [
   { path: "detais1", component: AboutDetail1sComponent },
   { path: "detais2", component: AboutDetail2sComponent }
@@ -260,6 +264,8 @@ const routes: Routes = [
   // path: "**" must be the last one in the array , because it is just a searhing loop
 
   { path: "department/details/:id", component: DepartmentDetails }                  // dynamic
+
+  // guard
 ];
 ```
 
@@ -329,5 +335,82 @@ show(){
   err => {console.log(err)},
   () => {console.log("complete")}             // excute after complete
   )
+}
+```
+
+## Form
+
+### `template driven form`
+
+```typescript
+// in app.module.ts
+import { FormsModule } from "@angular/forms";
+// and push it to imports
+
+// in component.html
+<form #userform="ngForm" >
+
+</form>
+<button (click)="show(userform)"></button>
+
+//in ts
+show(userform){
+  console.log(userform)
+}
+```
+
+```typescript
+// to make the form has control on input
+// inside that form
+<input type="text" name="id" ngModel>     //must has name & ngModel to make it form control type
+
+{{userform.value|json}}          // will show the value of the input => inputName:value
+
+<input type="text" name="id" ngModel #sid="ngModel">   // adding classes due to its status
+// classed: ng-valid - ng-dirty - ng-touched - ng-invalid -...
+{{sid.value}} - {{sid.dirty}} -{{sid.touched}}
+
+
+//submit
+<form (ngSubmit)="save">
+<input type="submit" value="add" [disabled]="userform.invalid">
+</form>
+
+```
+
+#### `ng2 validation //library`
+
+### `Reactive form`
+
+```typescript
+//in app.component.ts
+import {ReactiveFormsModule} from '@angular/forms';        // & push it to imports
+
+//in tamplate
+<form [formGroup]="stdform" (ngSubmit)="save()">
+  <input type"text" name="id" formControlName="id">     // to bind and control
+  <input type"text" name="fname" formControlName="fname">
+  <input type"text" name="age" formControlName="age">
+  <input type"text" name="email" formControlName="email">
+</form>
+
+{{stdform.value|json}}        //{"id":initialValue,"fname":initialValue,"age":initialValue,"email":initialValue}
+```
+
+```typescript
+// in component.ts
+import { FormControl, FormGroup } from "@angular/forms";
+
+stdform = new formGroup({
+  id: new FormControl(initialValue),
+  fname: new FormControl(initialValue),
+  age: new FormControl(initialValue),
+  email: new FormControl(initialValue),
+});
+
+std:Student = new Student();
+save(){
+  this.std = this.stdform.value;
+  console.log(this.std)
 }
 ```
