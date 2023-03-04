@@ -378,7 +378,7 @@ show(userform){
 
 ```
 
-#### `ng2 validation //library`
+#### `ng2 validation // "library for form validation"`
 
 ### `Reactive form`
 
