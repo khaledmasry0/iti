@@ -2,7 +2,7 @@
 
 ### `Client Side Framework - Single Page application`
 
-[cheatsheet](https://angular.io/guide/cheatsheet)
+- [cheatsheet](https://angular.io/guide/cheatsheet)
 
 ### commands
 
