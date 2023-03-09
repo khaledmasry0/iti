@@ -32,6 +32,7 @@ npm i                               to install node modules
 - runtime.js => from where calling starts
 
 - #### primeNG : UI library
+- #### angular material
 
 - #### install Bootstrap
 
