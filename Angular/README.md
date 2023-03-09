@@ -4,18 +4,21 @@
 
 - [cheatsheet](https://angular.io/guide/cheatsheet)
 
+#### Component = Template(View layout) + Class(properies & methods) + Metadata(extra data for Angular)
+
 ### commands
 
 ```node
-npm i -g @angular/cli               to install angular
+npm i -g @angular/cli               to install angular globally
 ng new App_name                     to create a new angular app
-ng serve -o                         to run the application
+ng serve -o                         to run the application     // --port
 ng g c component_name               to generate a component    // --skipTests
 ng g class folderName/className     to generate a class
 ng g d directive_name               to generate a directive
 ng g p pipe_name                    to generate a pipe
 ng g s service_name                 to generate a service
 ng g g service_name                 to generate a guard
+npm i                               to install node modules
 ```
 
 ### folders & files
@@ -29,6 +32,18 @@ ng g g service_name                 to generate a guard
 - runtime.js => from where calling starts
 
 - #### primeNG : UI library
+
+- #### install Bootstrap
+
+```javascript
+npm install bootstrap    // install the library
+
+// in angular.json
+// Styles
+"node_modules/bootstrap/dist/css/bootstrap.min.css"
+//scripts
+"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+```
 
 - #### Data Binding:
 
