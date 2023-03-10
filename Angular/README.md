@@ -42,6 +42,7 @@ npm install bootstrap    // install the library
 // in angular.json
 // Styles
 "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
 //scripts
 "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 ```
