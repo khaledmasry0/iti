@@ -94,7 +94,7 @@ show(e){
 <button (click) ="show($event)">save</button>
 ```
 
-### Reference variable
+### Reference variable - Event binding
 
 ```javascript
 //  = useRef() in React
@@ -144,7 +144,7 @@ changeproduct(value){      // in component
 ages = [10, 20, 30];
 
 //in template
-<div *ngFor ="let item of ages;let i=index;let o=odd;let e=even; let f=first; let l =last"
+<div *ngFor ="let item of ages;let i=index;let o=odd;let e=even; let f=first; let l =last; let c=count; trackBy= functionName"
 
 // classes
 [class.bg-success] = "condition"
@@ -160,6 +160,12 @@ ages = [10, 20, 30];
 
 //Styles
 [ngStyle]= "{'className': condition, 'bg-success': o, 'bg-danger': array.length > 5}"
+
+
+//trackBy
+//used to specify iterable objects identity and so inhance the performance of ngFor
+
+[hidden] = "product.quantity = 2"     // hide elements meet the condition it's more efficient than ngIf
 >
   age = {{item}}
 </div>
@@ -181,6 +187,9 @@ ages = [10, 20, 30];
 [ngClass] = "{'className': condition, 'bg-danger': ages.length < 5}"
 >
 </div>
+
+<div *ngIf ="ages.lenth > 5 ; else notExist"></div>   // else => show ng-template has #notExist instead of this div
+<ng-template #notExist >not exist</ng-template>       // it's hidden until call
 ```
 
 ### [ngSwitch]
@@ -200,6 +209,18 @@ x = 2
 // so span of 2 is which be exist
 ```
 
+#### can't use two directives in the same element and to solve this problem
+
+```typescript
+
+<ng-container *ngFor..........>      // this tag won't be exist in dom it just in runtime
+<div *ngIf>
+
+</div>
+</ng-container>
+
+```
+
 "--------------------------------------------------------------------------------------------------"
 
 ### make your own directive
@@ -213,6 +234,12 @@ import { Directive, ElementRef, Input } from "@angular/core";
 export class directive_name implements onInit {
   @Input() dcolor: string = "purlpe";
   constructor(public el: ElementRef) {}
+
+  @HostListener("mouseover") fanctionName() {
+    // when mouseover call this function
+    this.el.nativeElement.style.color = this.color;
+  }
+
   ngOnInit(): void {
     this.el.nativeElement.style.backgroundColor = this.dcolor;
   }
@@ -232,6 +259,7 @@ export class directive_name implements onInit {
 #### `it's a format for: String || Number || Date`
 
 ```typescript
+{{Value | pipe : param}}
 {{ValueName | currency : currencyCode : display : digitInfo : locale}}
 {{ValueName | date : format : timezone : locale  }}
 
