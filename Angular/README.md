@@ -289,6 +289,21 @@ ndate = new Date(1997 , 4 , 12)
 
 <hr/>
 
+### Component Lifecycle
+
+- constructor `variable initialization & dependency injection`
+
+- ngOnChanges // `Runs only if an input parameters changed`
+- ngOnInit // `anything you want to done after initialization of the component`
+- ngDoCheck `check if there any change done after the above two methods`
+  - ngAfterContentinit
+  - ngAfterContentChecked
+  - ngAfterViewinit // `anything I want to do on html element and View`
+  - ngAfterViewChecked
+- ngOnDestroy // `after close the component`
+
+<hr/>
+
 ## Routing
 
 ```typescript
