@@ -302,6 +302,14 @@ ndate = new Date(1997 , 4 , 12)
   - ngAfterViewChecked
 - ngOnDestroy // `after close the component`
 
+@input
+@output
+@viewChild('element') clientNameElement! : ElementRef;
+
+ngAfterViewinit(){
+this.clientNameElement.nativeElement.style.color="red"
+}
+
 <hr/>
 
 ## Routing
