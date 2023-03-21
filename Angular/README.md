@@ -306,7 +306,7 @@ ndate = new Date(1997 , 4 , 12)
 @output
 @viewChild('element') clientNameElement! : ElementRef;
 
-ngAfterViewinit(){
+ngAfterViewinit(): void {
 this.clientNameElement.nativeElement.style.color="red"
 }
 
