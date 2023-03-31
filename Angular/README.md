@@ -18,6 +18,7 @@ ng g d directive_name               to generate a directive
 ng g p pipe_name                    to generate a pipe
 ng g s service_name                 to generate a service
 ng g g service_name                 to generate a guard
+ng g module app-routing --flat --module=app
 npm i                               to install node modules
 ```
 
@@ -326,7 +327,7 @@ const routes: Routes = [
   //children
   { path: "about", component: AboutComponent,children: [
   { path: "detais1", component: AboutDetail1sComponent },
-  { path: "detais2", component: AboutDetail2sComponent }
+  { path: "detais2", component: AboutDetail2sComponent, canActivate:[guardName] }
   ]}
 
   { path: "", redirectTo:"home", pathMatch:"full" } // has nothing => load HomeComponent & make path has /home
@@ -483,4 +484,26 @@ save(){
   this.std = this.stdform.value;
   console.log(this.std)
 }
+
+OR
+
+userRegFrm: FormGroup;
+constructor(private fb:FormBuilder){
+  this.userRegFrm = fb.group({
+    fullName:["", [validators.required,validators.pattern('[A-Za-z{3,}]')]],
+    email:[''],
+    password:[""]
+    adress: fb.group({
+      city:[''],
+      street:['']
+    })
+  })
+}
+
+// in temp
+
+//all as the first one
+
+{{userRegFrm.get('fullName')?.errors}} // to show error message
+
 ```
