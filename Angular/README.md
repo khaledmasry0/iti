@@ -20,6 +20,7 @@ ng g s service_name                 to generate a service
 ng g g service_name                 to generate a guard
 ng g module app-routing --flat --module=app
 npm i                               to install node modules
+ng build --configuration=production to build the production project called dist
 ```
 
 ### folders & files
@@ -503,6 +504,13 @@ constructor(private fb:FormBuilder){
 // in temp
 
 //all as the first one
+
+<input type="text" formControlName="fullName" class="form-control" [class.is-valid]="fullName?.valid">
+<div [hidden]="fullName.valid" >
+  <small *ngIf="fullName?.required?.['required']>
+    Full Name Required
+  </small>
+</div>
 
 {{userRegFrm.get('fullName')?.errors}} // to show error message
 
